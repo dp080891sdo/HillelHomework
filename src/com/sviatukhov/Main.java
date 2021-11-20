@@ -3,6 +3,47 @@ package com.sviatukhov;
 public class Main {
 
     /*
+1) Электронные часы показывают время в формате от 00:00 до 23:59.
+Подсчитать сколько раз за сутки случается так,
+что слева от двоеточия показывается симметричная комбинация для той,
+что справа от двоеточия (например, 02:20, 11:11 или 15:51).
+    */
+
+    public static void main(String[] args) {
+        String hours[] = new String[24];
+        for (int i = 0; i < hours.length; i++) {
+            if (i < 10) {
+                hours[i] = "0" + i;
+            } else hours[i] = "" + i;
+        }
+
+        String minutes[] = new String[60];
+        for (int i = 0; i < minutes.length; i++) {
+            if (i < 10) {
+                minutes[i] = "0" + i;
+            } else minutes[i] = "" + i;
+        }
+
+        String hoursReverse[] = new String[hours.length];
+        for (int i = 0; i < hours.length; i++) {
+            hoursReverse[i] = new StringBuilder(hours[i]).reverse().toString();
+        }
+
+        int count = 0;
+        for (int i = 0; i < hoursReverse.length; i++) {
+            for (int j = 0; j < minutes.length; j++) {
+                if (hoursReverse[i].equals(minutes[j])) {
+                    count++;
+                }
+            }
+        }
+        System.out.println("Count of symmetrical is " + count);
+    }
+}
+
+class task2 {
+
+    /*
 2) Найти количество счастливых билетиков на трамвай от 000001 до 999999 -
  те у которых сумма первых 3 цифр равна сумме последних 3
     */
